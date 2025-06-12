@@ -1,25 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import { SnackbarProvider } from 'notistack';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { RouterProvider } from 'react-router-dom'
+import router from './routers/router.jsx'
+import  'sweetalert2/dist/sweetalert2.js'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <SnackbarProvider>
-      <App />
-    </SnackbarProvider>
-  </BrowserRouter>
-);
+import { Provider } from 'react-redux'
+import { store } from './redux/store.js'
 
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//     <BrowserRouter>
-//       <SnackbarProvider>
-//         <App />
-//       </SnackbarProvider>
-//     </BrowserRouter>
-//   </React.StrictMode>
-// );
+createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>,
+)
